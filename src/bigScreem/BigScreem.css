@@ -1,0 +1,18 @@
+canvas{
+    background: black;
+}
+
+.barrage {
+    position: absolute;
+    right: -5vw;
+    margin: 0;
+    padding: 0;
+    transition: right 20s linear;
+}
+
+
+/*.deadBarrage{
+    position: absolute;
+    margin: 0;
+    padding: 0;
+}*/

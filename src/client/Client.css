@@ -1,0 +1,256 @@
+.clientWrapper {
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+}
+
+textarea {
+    display: block;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 50vw;
+    padding: 0vw;
+    font-size: 5vw;
+    font-family: PingFang SC, Tahoma, Arial;
+    color: gray;
+    padding: 5vw;
+    outline: none;
+    border: none;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: lightgray;
+    font-family: PingFang SC, Tahoma, Arial;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+    color: lightgray;
+    font-family: PingFang SC, Tahoma, Arial;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+    color: lightgray;
+    font-family: PingFang SC, Tahoma, Arial;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: lightgray;
+    font-family: PingFang SC, Tahoma, Arial;
+}
+
+.fuctionBar{
+	/*position: absolute;*/
+	overflow: hidden;
+	/*bottom: 10vw;*/
+}
+
+.textLength{
+	margin: 0;
+	padding: 0;
+	text-align: right;
+	font-size: 3vw;
+	color: gray;
+}
+
+.fuctionBar img {
+	float: left;
+}
+
+.colorImg{
+	width: 8vw;
+	margin-left: 6vw;
+}
+
+.setImg {
+	width: 14.2vw;
+	margin-left: 6vw;
+}
+
+.fuctionBar button {
+	display: block;
+	width: 90vw;
+	height: 10vw;
+	border: none;
+	background: rgb(255, 175, 34);
+	outline: none;
+	margin: 0 auto;
+	margin-top: 20vw;
+	border-radius: 1.3vw;
+	color: white;
+	font-size: 4vw;
+}
+
+/*.fuctionBar button:vizited{
+	opacity: 1;
+}*/
+
+/*.fuctionBar button:hover{
+	opacity: 0.6
+}*/
+
+/*.ripple {
+    position: relative;
+    //隐藏溢出的径向渐变背景
+    overflow: hidden;
+}
+
+.ripple:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    //设置径向渐变
+    background-image: radial-gradient(circle, #666 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform .3s, opacity .5s;
+}
+
+.ripple:active:after {
+    transform: scale(0, 0);
+    opacity: .3;
+    //设置初始状态
+    transition: 0s;
+}*/
+
+.coverOn{
+	display: block;
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.7);
+}
+
+.coverOff{
+	display: none;
+}
+
+.tips{
+	display: block;
+	position: absolute;
+	width: 80vw;
+	top: 30vh;
+	left: 10vw;
+	background: white;
+	text-align: center;
+	border-radius: 2vw;
+}
+
+.tipsOff{
+	display: none;
+}
+
+.tips p{
+	display: block;
+	height: 30vw;
+	color: rgb(112, 112, 112);
+	font-size: 5vw;
+	font-weight: lighter;
+	line-height: 30vw;
+	border-bottom: solid 1px lightgray;
+}
+.tips .back{
+	height: 10vw;
+	color: rgb(255, 175, 34);
+	font-weight: lighter;
+}
+
+.palette{
+	position: absolute;
+	width: 80vw;
+	top: 15vh;
+	left: 10vw;
+	background: white;
+	border-radius: 2vw;
+}
+
+.palette p{
+	font-size: 5vw;
+	text-align: center;
+	color: gray;
+}
+
+.palette .check{
+	font-size: 5vw;
+	text-align: center;
+	color: rgb(255, 175, 34);
+	padding: 4vw;
+	border-top: solid 1px lightgray;
+}
+
+.colorSelect{
+	height: 65vw;
+	padding: 0 2vw;
+}
+
+.color{
+	display: inline-block;
+	box-sizing: border-box;
+	width: 16vw;
+	height: 16vw;
+	background: pink;
+	border: solid 1px lightgray;
+	border-radius: 50%;
+	/*box-shadow: 0 0 3vw gray;*/
+	margin: 1.5vw 4.6vw;
+}
+
+.color_1{
+	background: white;
+}
+
+.color_2{
+	background: rgb(3, 84, 205);
+}
+
+.color_3{
+	background: rgb(0, 217, 174);
+}
+
+.color_4{
+	background: rgb(238, 0, 168);
+}
+
+.color_5{
+	background: rgb(0, 176, 234);
+}
+
+.color_6{
+	background: rgb(255, 244, 40);
+}
+
+.color_7{
+	background: rgb(255, 91, 59);
+}
+
+.color_8{
+	background: rgb(192, 63, 245);
+}
+
+.color_9{
+	background: rgb(255, 171, 10);
+}
+
+
+
+
+
+
+
+
+
+
+/*End*/
