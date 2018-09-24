@@ -6,16 +6,18 @@ import {
     Switch
 } from 'react-router-dom';
 import './index.css';
-import BigScreem from './bigScreem/BigScreem.js';
+import BigScreen from './bigScreen/BigScreen.js';
 import Client from './client/Client.js';
+import Backstage from './Backstage/Backstage.js';
 import registerServiceWorker from './registerServiceWorker';
 
 
 ReactDOM.render(
     <Router basename="">
         <Switch>
-            <Route path="/bigScreen" component={BigScreem} />
+            <Route path="/bigScreen" component={BigScreen} />
             <Route path="/client" component={Client} />
+            <Route path="/backstage" component={Backstage} />
         </Switch>
     </Router>,
     document.getElementById('root')

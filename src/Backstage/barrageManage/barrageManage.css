@@ -1,0 +1,153 @@
+.barrageManage {
+    padding-left: 30px;
+}
+
+.board .title {
+    padding: 16px 0 20px 0;
+    color: rgb(255, 181, 53);
+    font-size: 20px;
+}
+
+.shield p.smallTitle,
+.setting p.smallTitle {
+    font-size: 17px;
+    color: gray;
+}
+
+.shield input {
+    float: left;
+    width: 300px;
+    height: 45px;
+    background: rgb(250, 250, 250);
+    outline: none;
+    border: none;
+    margin-top: 13px;
+    padding-left: 10px;
+    font-size: 18px;
+    font-weight: lighter;
+    border-radius: 8px;
+}
+
+.add {
+    display: inline-block;
+    margin: 13px 0 0 40px;
+    width: 100px;
+    height: 40px;
+    background: rgb(255, 181, 53);
+    color: white;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: lighter;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.keyword {
+    margin-top: 20px;
+    line-height: 14px;
+    width: 450px;
+}
+
+.keyword p {
+    margin-top: 18px;
+    float: left;
+    font-size: 13px;
+    color: gray;
+}
+
+.word {
+    display: inline-block;
+    background: rgb(247, 247, 247);
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: gray;
+    font-weight: lighter;
+    margin-right: 16px;
+    margin-top: 10px;
+}
+
+
+.word img {
+    width: 12px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.setting {
+    margin-top: 30px;
+}
+
+.inputWrapper {
+    margin-top: 20px;
+}
+
+.setting span {
+    display: inline-block;
+    min-width: 50px;
+    font-size: 15px;
+    line-height: 20px;
+    color: gray;
+}
+
+.inputWrapper input {
+    margin-left: 16px;
+    line-height: 20px;
+    height: 10px;
+    width: 200px;
+    background: orange;
+}
+
+
+/*input[type=range]::-webkit-slider-runnable-track {
+    background: rgb(255, 218, 154);
+}*/
+
+
+/*input[type='range']::-webkit-slider-runnable-track{  
+    background-color: #eee;
+    height: 6px;
+    border-radius: 10px;
+    background: orange;
+}*/
+
+.interval {
+    margin-top: 30px;
+}
+
+.setting select {
+    margin-left: 20px;
+    margin-right: 15px;
+    height: 36px;
+    width: 60px;
+    padding: 5px;
+    text-align: center;
+    background: rgb(247, 247, 247);
+    outline: none;
+    border: none;
+}
+
+.filter {
+    margin-top: 30px;
+}
+
+.filter img {
+    width: 55px;
+    margin-top: 20px;
+    margin-right: 35px;
+    cursor: pointer;
+}
+
+
+.save {
+    width: 110px;
+    height: 40px;
+    background: rgb(255, 181, 53);
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 8px;
+    margin-top: 60px;
+    cursor: pointer;
+}

@@ -1,0 +1,154 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-weight: lighter;
+}
+
+body{
+    background: rgb(251, 251, 251);
+}
+
+.wrapper{
+    /*min-width: 1000px;
+    max-width: 1440px;*/
+    background: rgb(251, 251, 251);
+    margin: 0 auto;
+}
+
+.headerWrapper{
+    background: rgb(255, 181, 53);
+}
+
+.header{
+    width: 1000px;
+    height: 60px;
+    margin: 0 auto;
+}
+
+.logo{
+    height: 90%;
+    margin-left: 18px;
+}
+
+.quit{
+    float: right;
+    margin-right: 10px;
+    color: white;
+    font-size: 20px;
+    line-height: 60px;
+    cursor: pointer;
+}
+
+.welcom{
+    float: right;
+    margin-right: 30px;
+    color: white;
+    font-size: 16px;
+    line-height: 60px;
+}
+
+
+.main{
+    overflow: hidden;
+    width: 1000px;
+    margin: 20px auto;
+}
+
+.functionBar{
+    float: left;
+    margin-left: 20px;
+    width: 270px;
+    height: 600px;
+}
+
+.board{
+    float: right;
+    background: white;
+    width: 680px;
+    /*min-height: 800px;*/
+}
+
+.functionBar img.icon{
+    width: 18px;
+    margin-top: 11px;
+    margin-left: 3px;
+    float: left;
+}
+
+.manageWrapper, .activityWrapper{
+    overflow: hidden;
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 13px;
+}
+
+.manage, .activity{
+    overflow: hidden;
+    margin: 0px auto;
+    background: white;
+    border-radius: 8px;
+}
+
+.functionBar .title{
+    width: 85%;
+    margin: 0 auto;
+    margin-top: 10px;
+    height: 45px;
+    font-size: 20px;
+    line-height: 40px;
+    color: black;
+}
+
+.functionBar .title span{
+    margin-left: 10px;
+}
+
+.selection{
+    height: 45px;
+    line-height: 45px;
+    font-size: 16px;
+    color: gray;
+    cursor: pointer;
+}
+
+
+.selectionOn{
+    height: 45px;
+    line-height: 45px;
+    font-size: 16px;
+    color: gray;
+    background: rgb(255, 181, 53);
+}
+
+
+
+
+.selection:hover{
+    opacity: 0.5;
+}
+
+.selection p{
+    display: block;
+    width: 75%;
+    margin: 0 auto;
+    padding-left: 25px;
+    border-top: solid 1px lightgray;
+}
+
+.selection span{
+    margin-left: 32px;
+    width: 85%;
+}
+
+.first{
+    /*border-bottom: solid 1px lightgray;*/
+}
+
+.second{
+    border-radius: 0 0 8px 8px;
+}
+
+
+
+
+/*end*/

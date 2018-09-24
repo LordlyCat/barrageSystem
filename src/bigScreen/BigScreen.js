@@ -2,9 +2,10 @@ import React, {
     Component
 } from 'react';
 
-import './BigScreem.css';
+import './BigScreen.css';
 
 let ctx;
+let websocket;
 
 class BigScreem extends Component {
     constructor() {
@@ -14,17 +15,35 @@ class BigScreem extends Component {
         this.height = window.innerHeight;
     }
     componentDidMount() {
-        ctx = this.myRef.current.getContext('2d');
         let list = [];
-        setInterval(() => {
-            list.push(new Barrage("哈哈哈哈哈哈哈哈哈哈哈哈哈", 'white', 30, 'serif'));
-        }, 1000);
+
+        websocket = new WebSocket('wss://wx.yyeke.com/bigscreennetty/screen');
+        websocket.addEventListener('open', (event) => {
+            console.log('wss', event);
+        })
+
+        websocket.addEventListener('message', (message) => {
+            //console.log(JSON.parse(data.data));
+            let data = JSON.parse(message.data);
+            console.log(data);
+            list.push(new Barrage(data.text, data.color, 30, 'serif'));
+        }, false)
+
+
+        ctx = this.myRef.current.getContext('2d');
+        // setInterval(() => {
+        //     list.push(new Barrage("哈哈哈哈哈哈哈哈哈哈哈哈哈", 'white', 30, 'serif'));
+        // }, 1000);
         let go = () => {
             ctx.clearRect(0, 0, this.width, this.height);
             console.log(list.length)
             for (var i = 0; i < list.length; i++) {
                 if (list[i].lifeState === 'died') {
+                    console.log('died');
                     list.splice(i, 1);
+                }
+                if (!list[i]) {
+                    break;
                 }
                 this.moving(list[i]);
             }

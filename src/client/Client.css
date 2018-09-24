@@ -177,13 +177,17 @@ textarea:-ms-input-placeholder {
 	border-radius: 2vw;
 }
 
+.paletteOff{
+	display: none;
+}
+
 .palette p{
 	font-size: 5vw;
 	text-align: center;
 	color: gray;
 }
 
-.palette .check{
+.palette .check, .positionSet .check{
 	font-size: 5vw;
 	text-align: center;
 	color: rgb(255, 175, 34);
@@ -204,8 +208,21 @@ textarea:-ms-input-placeholder {
 	background: pink;
 	border: solid 1px lightgray;
 	border-radius: 50%;
-	/*box-shadow: 0 0 3vw gray;*/
 	margin: 1.5vw 4.6vw;
+}
+
+.color img{
+	width: 4.5vw;
+	float: right;
+	margin-top: 10vw;
+}
+
+.selected{
+	display: block;
+}
+
+.unselected{
+	display: none;
 }
 
 .color_1{
@@ -244,11 +261,27 @@ textarea:-ms-input-placeholder {
 	background: rgb(255, 171, 10);
 }
 
+.positionSet{
+	position: absolute;
+	width: 80vw;
+	background: white;
+	margin-top: 50vw;
+	margin-left: 10vw;
+}
 
+.positionSetOff{
+	display: none;
+}
 
+.positionSelect{
+	height: 40vw;
+}
 
-
-
+.positionSet img{
+	margin-top: 10vw;
+	width: 17vw;
+	margin-left: 7vw;
+}
 
 
 

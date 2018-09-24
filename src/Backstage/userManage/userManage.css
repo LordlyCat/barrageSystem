@@ -1,0 +1,137 @@
+.userManageWrapper {
+	padding-left: 30px;
+}
+
+.userManageWrapper .smallTitle {
+	display: inline-block;
+	min-width: 100px;
+}
+
+.userList {
+	margin-bottom: 50px;
+}
+
+.search {
+	height: 30px;
+	margin-left: 200px;
+	display: inline-block;
+	background: rgb(249, 249, 249);
+}
+
+.search input {
+	float: left;
+	margin-top: 5px;
+	padding-left: 10px;
+	width: 160px;
+	height: 20px;
+	background: rgb(249, 249, 249);
+	border: none;
+	outline: none;
+	border-radius: 10px;
+}
+
+.search img{
+	margin-top: 7px;
+	margin-right: 14px;
+	height: 50%;
+	cursor: pointer;
+}
+
+.listContainer {
+	width: 500px;
+	padding-right: 6px;
+	background: rgb(249, 249, 249);
+}
+
+.listWrapper{
+	overflow: auto;
+	overflow-x: hidden;
+	margin-top: 10px;
+	min-height: 40px;
+	max-height: 210px;
+	background: rgb(249, 249, 249);
+	border-radius: 5px;
+}
+
+.listWrapper::-webkit-scrollbar {
+	padding-right: 10px;
+	width: 5px;
+	background: rgb(249, 249, 249);
+	border-radius: 10px;
+}
+
+.listWrapper::-webkit-scrollbar-thumb{
+	background: white;
+	border-radius: 10px;
+}
+
+.list {
+	width: 90%;
+	background: white;
+	border-radius: 10px;
+	height: 40px;
+	margin: 10px;
+}
+
+.userList span{
+	display: inline-block;
+	min-width: 180px;
+	font-size: 13px;
+	color: gray;
+	margin-top: 15px;
+}
+
+.list img.headerImg{
+	float: left;
+	box-sizing: border-box;
+	height: 100%;
+	padding: 5px 8px 5px 13px;
+	/*margin-left: 8px;*/
+}
+
+.list span{
+	display: inline-block;
+	font-size: 12px;
+	line-height: 12px;
+	width: 170px !important;
+	min-width: 170px;
+}
+
+.list img.black{
+	float: right;
+	box-sizing: border-box;
+	height: 100%;
+	padding: 10px 14px 10px 0px;
+	cursor: pointer;
+}
+
+.save{
+	margin-bottom: 60px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
