@@ -15,6 +15,7 @@ import BarrageManage from './barrageManage/barrageManage.js';
 import UserManage from './userManage/userManage.js';
 import RedEnvelope from './redEnvelope/redEnvelope.js';
 import Random from './random/random.js';
+import ajax from '../ajax.js';
 
 class Backstage extends Component {
 	constructor() {
@@ -25,7 +26,26 @@ class Backstage extends Component {
 			active: [0, 1, 0, 0]
 		}
 	}
-
+	componentDidMount() {
+		console.log(localStorage.getItem('jwt'))
+		// ajax({
+		// 	url: 'https://wx.idsbllp.cn/bigscreen/admin/getUserList',
+		// 	method: 'GET',
+		// 	// data: {
+		// 	// 	peopleNum: 2,
+		// 	// 	keyWord: '23333',
+		// 	// 	duration: 30
+		// 	// },
+		// 	headers: {
+		// 		'Content-Type': 'application/x-www-form-urlencoded',
+		// 		'jwt': localStorage.getItem('jwt')
+		// 	},
+		// 	success: (data) => {
+		// 		console.log('data', data.response);
+		// 		//let resData = JSON.parse(data.response)
+		// 	}
+		// })
+	}
 	changeBoard(index) {
 		console.log(index);
 		let active = this.state.active;

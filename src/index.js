@@ -9,6 +9,7 @@ import './index.css';
 import BigScreen from './bigScreen/BigScreen.js';
 import Client from './client/Client.js';
 import Backstage from './Backstage/Backstage.js';
+import Login from './Login/login.js';
 import registerServiceWorker from './registerServiceWorker';
 
 
@@ -18,6 +19,7 @@ ReactDOM.render(
             <Route path="/bigScreen" component={BigScreen} />
             <Route path="/client" component={Client} />
             <Route path="/backstage" component={Backstage} />
+            <Route path="/login" component={Login} />
         </Switch>
     </Router>,
     document.getElementById('root')

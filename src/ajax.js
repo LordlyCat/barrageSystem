@@ -59,13 +59,16 @@ function ajax(opts) {
     oXhr.open(defaults.method, defaults.url, defaults.async);
 
     if (defaults.method === 'GET') {
+        Object.keys(opts.headers).forEach((key) => {
+            oXhr.setRequestHeader(key, opts.headers[key]);
+        });
         oXhr.send(null);
     } else {
         //设置请求头
         Object.keys(opts.headers).forEach((key) => {
             oXhr.setRequestHeader(key, opts.headers[key]);
         });
-
+        //OXhr.withCredentials = true;
         oXhr.send(defaults.data);
     }
 

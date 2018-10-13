@@ -1,5 +1,10 @@
-canvas{
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    float: left;
     background: black;
+    z-index: 1;
 }
 
 .barrage {
@@ -10,9 +15,188 @@ canvas{
     transition: right 20s linear;
 }
 
+#slotMachine {
+    position: absolute;
+    top: 10vw;
+    left: 27.5%;
+    width: 45vw;
+    height: 30vw;
+    z-index: 9999;
+    background: url(../img/slotMachine.png) no-repeat;
+    background-size: 100%;
+}
+
+
 
 /*.deadBarrage{
     position: absolute;
     margin: 0;
     padding: 0;
 }*/
+
+#slotMachine .listWrapper {
+    position: relative;
+    overflow: hidden;
+    width: 51%;
+    height: 9vw;
+    background: #fceed3;
+    margin: 20.5% 18.7%;
+}
+
+.user {
+    overflow: hidden;
+    box-sizing: border-box;
+    /*border: dashed 1px orange;*/
+    height: 9vw;
+    line-height: 9vw;
+    text-align: center;
+    font-size: 2.7vw;
+    font-weight: normal;
+}
+
+.userList_0,
+.userList_1,
+.userList_2 {
+    width: 100%;
+    position: absolute;
+    top: -90vw;
+    left: 0;
+    /*transition: top 2.5s linear;*/
+}
+
+.userList {
+    width: 100%;
+    position: absolute;
+    top: 0vw;
+    left: 0;
+}
+
+
+.redWrapper {
+    /*overflow: hidden;*/
+    position: absolute;
+    top: 29vh;
+    left: 38.5vw;
+    padding: 0 !important;
+    width: 23vw;
+    height: 30vw;
+    background: url(../img/red.png) no-repeat;
+    background-size: 100% auto;
+    background-position: 0%;
+    z-index: 9999;
+}
+
+
+.red {
+    /*float: left;
+    position: relative;
+    overflow: hidden;
+    width: 23vw;
+    height: 100%;
+    z-index: 20;*/
+}
+
+.restTime {
+    width: 23vw;
+    display: inline-block;
+    position: absolute;
+    margin-bottom: 0;
+    color: rgb(254, 227, 101);
+    font-size: 2vw;
+    text-align: center;
+    top: 22.3vw;
+    z-index: 9999999;
+}
+
+.restTime span{
+    padding: 0 10px;
+    font-weight: normal;
+    font-size: 2.9vw;
+    line-height: 2.9vw;
+}
+
+.redClose{
+    /*display: none;*/
+    position: absolute;
+    width: 23vw;
+    height: 20vw;
+    top: -7.0vw;
+    background: url(../img/redClose.png) no-repeat;
+    background-size: 100% auto;
+    background-position: 0% 100%;
+    transform:rotateX(0deg);
+    transition: transform 2s;
+    z-index: 999999;
+}
+
+.redWrapper p.password{
+    box-sizing: border-box;
+    width: 23vw;
+    position: absolute;
+    word-break: break-all;
+    font-size: 2.5vw;
+    color: rgb(225, 235, 163);
+    font-weight: normal;
+    padding: 1vw;
+    text-align: center;
+    top: 13vw;
+    z-index: 9999999;
+}
+
+.winUser{
+    position: absolute;
+    width: 18vw;
+    height: 15vw;
+    top: 5.99vw;
+    left: 2.5vw;
+    z-index: 999;
+}
+
+.redCoverWrapper{
+    /*display: none;*/
+    overflow: hidden;
+    position: absolute;
+    top: 5vw;
+    width: 100%;
+    height: 20vw;
+    z-index: 99999;
+}
+
+.redCover {
+    width: 100%;
+}
+
+.redUser{
+    overflow: hidden;
+    position: absolute;
+    width: 18vw;
+    height: 10vw;
+    top: 3.4vw;
+    left: 2.5vw;
+    background: #fdfdcf;
+    border-radius: 8px;
+    z-index: 9999;
+    transition: top 2s;
+}
+
+.redUser p{
+    text-align: center;
+    font-size: 1.7vw;
+    color: rgb(255, 73, 69);
+    font-weight: normal;
+    padding-top: 0.7vw;
+}
+
+.redUser p:last-child{
+    overflow: hidden;
+    font-size: 2.5vw;
+    height: 3vw;
+}
+
+
+
+
+
+
+
+/*End*/

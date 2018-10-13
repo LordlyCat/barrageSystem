@@ -67,6 +67,7 @@ textarea:-ms-input-placeholder {
 }
 
 .setImg {
+	display: none;
 	width: 14.2vw;
 	margin-left: 6vw;
 }
@@ -270,6 +271,7 @@ textarea:-ms-input-placeholder {
 }
 
 .positionSetOff{
+	overflow: hidden;
 	display: none;
 }
 

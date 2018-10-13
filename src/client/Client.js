@@ -15,33 +15,48 @@ class Client extends Component {
     constructor() {
         super();
         this.barrageColor = '#fff';
-        this.location = 0,
-            this.state = {
-                barrage: {
-                    text: '',
-                    color: this.barrageColor,
-                    location: 0
-                },
-                length: 0,
-                selectedColor: ['selected', 'unselected', 'unselected', 'unselected',
-                    'unselected', 'unselected', 'unselected', 'unselected', 'unselected'
-                ],
-                l_color: 'gray',
-                cover: 'coverOff',
-                tips: '',
-                tipsClass: 'tipsOff',
-                palette: "paletteOff",
-                positionSet: 'positionOff'
-            }
+        this.location = 0;
+        this.state = {
+            barrage: {
+                text: '',
+                color: this.barrageColor,
+                location: 0
+            },
+            length: 0,
+            selectedColor: ['selected', 'unselected', 'unselected', 'unselected',
+                'unselected', 'unselected', 'unselected', 'unselected', 'unselected'
+            ],
+            l_color: 'gray',
+            cover: 'coverOff',
+            tips: '',
+            tipsClass: 'tipsOff',
+            palette: "paletteOff",
+            positionSet: 'positionSetOff'
+        }
+        this.jwt;
         //this.textValue = '';
         this.getInput = this.getInput.bind(this);
         this.sendBarrage = this.sendBarrage.bind(this);
         this.closeCover = this.closeCover.bind(this);
     }
+    componentWillMount() {
+        if (window.location.hash.split('?')[1] == undefined) {
+            window.location = 'https://wx.idsbllp.cn/bigscreen/barrageIndex';
+            return false;
+        }
+        console.log(window.location.hash.split('?')[1].slice(2));
+        this.jwt = window.location.hash.split('?')[1].slice(2);
+        window.history.pushState({
+            jwt: 'getted'
+        }, 'client', '/#/client');
+    }
+    componentDidMount() {
+
+    }
     getInput(e) {
         let barrage = this.state.barrage;
         barrage.text = e.target.value;
-        if (e.target.value.length > 30) {
+        if (e.target.value.length > 15) {
             this.setState({
                 barrage: barrage,
                 length: e.target.value.length,
@@ -62,7 +77,7 @@ class Client extends Component {
         barrage.location = this.location;
         let regu = "^[ ]+$";
         let re = new RegExp(regu);
-        if (this.state.barrage.text.length > 30) {
+        if (this.state.barrage.text.length > 15) {
             this.setState({
                 cover: 'coverOn',
                 tipsClass: 'tips',
@@ -80,16 +95,33 @@ class Client extends Component {
             ajax({
                 async: true,
                 method: 'POST',
-                url: 'https://wx.yyeke.com/bigscreen/send',
+                url: 'https://wx.idsbllp.cn/bigscreen/send',
                 data: {
-                    ...that.state.barrage,
-                    openid: 'testOpenid'
+                    ...that.state.barrage
+                    // openid: 'testOpenid'
                 },
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'jwt': that.jwt
                 },
                 success: (data) => {
                     console.log('data', data.response);
+                    let resData = JSON.parse(data.response)
+                    //console.log(JSON.parse(data.response).status);
+                    if (resData.status === 403) {
+                        alert("请使用微信打开");
+                    } else if (resData.status == 401) {
+                        //alert('每隔3s才可以发送下一条弹幕哦');
+                        that.setState({
+                            cover: 'coverOn',
+                            tipsClass: 'tips',
+                            tips: '每隔3s才可以发送下一条弹幕哦'
+                        })
+                    } else if (resData.status === 402) {
+                        alert("登录过期，点击‘确认’重新登录");
+                        window.location = 'https://wx.idsbllp.cn/bigscreen/barrageIndex';
+                    }
+
                 }
             })
 
@@ -152,7 +184,7 @@ class Client extends Component {
         return (
             <div className="clientWrapper">
                 <textarea placeholder="说出你想说的话..." value={this.state.barrage.text} onChange={this.getInput}></textarea>
-                <p className="textLength"><span style={styleColor}>{this.state.length}</span>/30</p>
+                <p className="textLength"><span style={styleColor}>{this.state.length}</span>/15</p>
                 <div className="fuctionBar">
                     <img className="colorImg" src={colorImg} onClick={this.openSetting.bind(this, 'color')} alt=""/>
                     <img className="setImg" src={setImg} onClick={this.openSetting.bind(this, 'position')} alt=""/>
