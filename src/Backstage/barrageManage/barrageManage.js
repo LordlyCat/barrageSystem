@@ -9,7 +9,31 @@ import iconMoving from '../../img/movingIcon.png';
 import iconBottom from '../../img/bottomIcon.png';
 import iconColor from '../../img/colorIcon.png';
 
+import ajax from '../../ajax.js';
+
 class BarrageManage extends Component {
+    constructor() {
+        super();
+
+        this.openColors = this.openColors.bind(this);
+    }
+    openColors() {
+        ajax({
+            url: 'https://wx.idsbllp.cn/bigscreen/admin/commond',
+            method: 'POST',
+            data: {
+                key: 'colors',
+                value: 'colors'
+            },
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'jwt': localStorage.getItem('jwt')
+            },
+            success: (data) => {
+                console.log('colors', data.response);
+            }
+        })
+    }
     render() {
         return (
             <div className="barrageManage">
@@ -70,6 +94,7 @@ class BarrageManage extends Component {
                 </div>
 
                 <div className="save">保存</div>
+                <div className="save" onClick={this.openColors} >彩弹</div>
             </div>
         )
     }

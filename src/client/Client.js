@@ -56,7 +56,7 @@ class Client extends Component {
     getInput(e) {
         let barrage = this.state.barrage;
         barrage.text = e.target.value;
-        if (e.target.value.length > 15) {
+        if (e.target.value.length > 20) {
             this.setState({
                 barrage: barrage,
                 length: e.target.value.length,
@@ -77,7 +77,7 @@ class Client extends Component {
         barrage.location = this.location;
         let regu = "^[ ]+$";
         let re = new RegExp(regu);
-        if (this.state.barrage.text.length > 15) {
+        if (this.state.barrage.text.length > 20) {
             this.setState({
                 cover: 'coverOn',
                 tipsClass: 'tips',
@@ -115,7 +115,7 @@ class Client extends Component {
                         that.setState({
                             cover: 'coverOn',
                             tipsClass: 'tips',
-                            tips: '每隔3s才可以发送下一条弹幕哦'
+                            tips: '每隔5s才可以发送下一条弹幕哦'
                         })
                     } else if (resData.status === 402) {
                         alert("登录过期，点击‘确认’重新登录");
@@ -184,7 +184,7 @@ class Client extends Component {
         return (
             <div className="clientWrapper">
                 <textarea placeholder="说出你想说的话..." value={this.state.barrage.text} onChange={this.getInput}></textarea>
-                <p className="textLength"><span style={styleColor}>{this.state.length}</span>/15</p>
+                <p className="textLength"><span style={styleColor}>{this.state.length}</span>/20</p>
                 <div className="fuctionBar">
                     <img className="colorImg" src={colorImg} onClick={this.openSetting.bind(this, 'color')} alt=""/>
                     <img className="setImg" src={setImg} onClick={this.openSetting.bind(this, 'position')} alt=""/>

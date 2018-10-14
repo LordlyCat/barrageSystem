@@ -15,7 +15,7 @@ class BigScreen extends Component {
         this.myRef = React.createRef();
         this.width = window.screen.availWidth;
         this.height = window.innerHeight;
-        this.defaultAttributes = new DefaultAttributes(30, 'serif', 5, 0.8);
+        this.defaultAttributes = new DefaultAttributes(31, 'serif', 5, 1);
         this.lane = new Lane(Math.floor(this.height / this.defaultAttributes.getFontSize()));
         this.pushBarrageList = this.pushBarrageList.bind(this);
         this.reconnect = this.reconnect.bind(this);
@@ -29,10 +29,13 @@ class BigScreen extends Component {
                 peopleNum: 1,
                 duration: 30
             },
-            redUser: ''
+            redUser: [],
+            redClose: false,
+            nextRed: 0
         }
 
-        this.list = []
+        this.list = [];
+        this.colorsOpen = false;
 
     }
     componentDidMount() {
@@ -64,18 +67,13 @@ class BigScreen extends Component {
 
         websocket.addEventListener('message', (message) => {
             let data = JSON.parse(message.data);
-            console.log(data);
-            // if (data.type === 'text') {
-            //     this.pushBarrageList(data, list);
-            // } else if (condition) {
-
-            // }
 
             switch (data.type) {
                 case 'text':
-                    this.pushBarrageList(data, list);
+                    this.pushBarrageList(data, list, lg);
                     break;
                 case 'server':
+                    console.log(data);
                     if (data.value === 'true') {
                         this.setState({
                             ifSlot: true
@@ -97,15 +95,43 @@ class BigScreen extends Component {
                         }
                     } else if (data.value === 'redOver') {
                         this.setState({
-                            ifRed: false
+                            redClose: true
                         })
+                        setTimeout(() => {
+                            this.setState({
+                                ifRed: false,
+                                redUser: ''
+                            })
+                        }, 6500)
+                    } else if (data.value === 'colors') {
+                        if (this.colorsOpen) {
+                            this.colorsOpen = false;
+                        } else {
+                            this.colorsOpen = true;
+                        }
+                    } else if (data.value === 'nextRed') {
+                        if (this.state.nextRed < this.state.redUser.length - 1) {
+                            let next = ++this.state.nextRed;
+                            this.setState({
+                                nextRed: next
+                            })
+                        }
+
                     }
                     break;
                 case 'gift':
+                    console.log(data);
                     if (data.data) {
+                        let arr = [];
+                        for (var i = data.data.length - 1; i >= 0; i--) {
+                            arr[i] = data.data[i].nickname
+                        }
+                        // arr[1] = '111';
+                        // arr[2] = '222';
                         console.log('result', data.data);
+                        console.log(typeof(data.data));
                         this.setState({
-                            redUser: data.data[0].nickname
+                            redUser: arr
                         })
                     } else {
                         console.log('redBegin');
@@ -131,21 +157,30 @@ class BigScreen extends Component {
 
         ctx = this.myRef.current.getContext('2d');
 
-        let n = 0;
-        setInterval(() => {
-            list.push(new Barrage('哈哈哈哈哈哈哈哈哈' + n, 'white',
-                this.defaultAttributes.getFontSize(), this.defaultAttributes.getFontFamily(),
-                this.defaultAttributes.getSpeed(), this.defaultAttributes.getOpacity(),
-                '',
-                this.lane.useLane() * this.defaultAttributes.getFontSize()
-            ));
-            n++;
-        }, 100);
+        let lg = ctx.createLinearGradient(0, 0, 1400, 500);
+        lg.addColorStop(0.2, "pink");
+        lg.addColorStop(0.30, "#0f0");
+        lg.addColorStop(0.50, "orange");
+        lg.addColorStop(0.8, "lightblue");
+        lg.addColorStop(1, "red");
+
+        // let n = 0;
+        // setInterval(() => {
+        //     list.push(new Barrage('哈哈hahahahahahhah' + n, 'white',
+        //         this.defaultAttributes.getFontSize(), this.defaultAttributes.getFontFamily(),
+        //         this.defaultAttributes.getSpeed(), this.defaultAttributes.getOpacity(),
+        //         '',
+        //         this.lane.useLane() * this.defaultAttributes.getFontSize()
+        //     ));
+        //     n++;
+        // }, 10);
+
+
         let go = () => {
             ctx.clearRect(0, 0, this.width, this.height);
             for (var i = 0; i < list.length; i++) {
                 if (list[i].lifeState === 'died') {
-                    console.log('died');
+                    //console.log('died');
                     list.splice(i, 1);
                 }
                 if (!list[i]) {
@@ -206,8 +241,15 @@ class BigScreen extends Component {
         barrage.draw();
         barrage.x -= barrage.text.length / 6 + barrage.speed; //弹幕移动速度
     }
-    pushBarrageList(data, list) {
+    pushBarrageList(data, list, lg) {
         let that = this;
+        if (this.colorsOpen) {
+            data.color = lg;
+        }
+        if (data.text === '红岩网校工作站') {
+            data.color = lg;
+        }
+        //console.log(list.length)
         list.push(new Barrage(data.text, data.color,
             that.defaultAttributes.getFontSize(), that.defaultAttributes.getFontFamily(),
             that.defaultAttributes.getSpeed(), that.defaultAttributes.getOpacity(), '',
@@ -222,7 +264,10 @@ class BigScreen extends Component {
         }
 
         if (this.state.ifRed) {
-            red = <Red data={this.state.redInfo} redUser={this.state.redUser} />
+            red = <Red data={this.state.redInfo} 
+            redUser={this.state.redUser} 
+            redClose={this.state.redClose}
+            nextRed={this.state.nextRed} />
         }
 
         return (
@@ -305,6 +350,13 @@ class Barrage {
         this.destroyTimer();
     }
     draw() {
+        // let lg = ctx.createLinearGradient(0, 0, 1400, 500);
+        // lg.addColorStop(0.2, "pink");
+        // lg.addColorStop(0.4, "#0f0");
+        // lg.addColorStop(0.6, "orange");
+        // lg.addColorStop(0.8, "lightblue");
+        // lg.addColorStop(1, "red");
+
         ctx.fillStyle = this.color;
         ctx.font = this.font;
         ctx.fillText(this.text, this.x, this.y);
@@ -321,17 +373,55 @@ class Lane {
     constructor(length) {
         this.length = length;
         this.laneArr = new Array(length);
-        this.last = null;
+        this.last_1 = null;
+        this.last_2 = null;
+        this.last_3 = null;
+        this.last_4 = null;
+        this.last_5 = null;
     }
     useLane() {
+        let arr = [];
+        arr[0] = this.last_1;
+        arr[1] = this.last_2;
+        arr[2] = this.last_3;
+        arr[3] = this.last_4;
+        arr[4] = this.last_5;
+
         let num = Math.round(Math.random() * (this.length - 1)) + 1;
-        while (num === this.last) {
+        while (num === this.last_1 ||
+            num === this.last_2 ||
+            num === this.last_3 ||
+            num === this.last_4 ||
+            num === this.last_5) {
+
             num = Math.round(Math.random() * (this.length - 1)) + 1;
         }
-        this.last = num;
+        this.last_1 = num;
+        this.last_2 = arr[0];
+        this.last_3 = arr[1];
+        this.last_4 = arr[2];
+        this.last_5 = arr[3];
+
         return num;
     }
 
+}
+
+class Tips extends Component {
+    constructor(tip) {
+        super();
+        this.state = {
+            tip: 'tip'
+        }
+    }
+
+    render() {
+        return (
+            <div className="tipWrapper">
+
+            </div>
+        )
+    }
 }
 
 class SlotMachine extends Component {
@@ -523,18 +613,27 @@ class Red extends Component {
         this.openRed = this.openRed.bind(this);
         this.closeRed = this.closeRed.bind(this);
         this.out = this.out.bind(this);
+        this.getIn = this.getIn.bind();
+        this.checkIfOpen = this.checkIfOpen.bind(this);
+        this.nextWinner = this.nextWinner.bind(this);
 
         this.state = {
-            time: props.data.duration
+            time: props.data.duration,
+            open: false,
+            showUser: ''
         }
 
-        this.timer = null
+        this.timer = null;
+
+        this.uuu = [];
+        this.has = 0;
     }
 
     componentDidMount() {
 
         let t = this.state.time;
         this.timer = setInterval(() => {
+            this.checkIfOpen();
             if (t > 0) {
                 t--;
             }
@@ -548,7 +647,35 @@ class Red extends Component {
         console.log('red_clear');
     }
     componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
         if (nextProps.redUser.length > 0) {
+            this.uuu = nextProps.redUser;
+        }
+        if (nextProps.redUser.length > 0 && !this.state.open && this.state.time === 0) {
+            this.setState({
+                open: true,
+                showUser: nextProps.redUser[0]
+            })
+            this.uuu = nextProps.redUser;
+            setTimeout(() => {
+                this.openRed();
+            }, 3000);
+        } else if (nextProps.redClose) {
+            this.closeRed()
+        }
+
+        if (nextProps.nextRed > 0 && this.has !== nextProps.nextRed) {
+            this.nextWinner(nextProps.nextRed);
+        }
+    }
+    checkIfOpen() {
+        if (this.state.time === 0 && !this.state.open && this.props.redUser.length > 0) {
+            console.log(this.uuu)
+            this.setState({
+                open: true,
+                showUser: this.props.redUser[0]
+            })
+            this.uuu = this.props.redUser;
             setTimeout(() => {
                 this.openRed();
             }, 3000);
@@ -563,9 +690,14 @@ class Red extends Component {
         }, 3500)
     }
     closeRed() {
-        let node = document.querySelector('.redClose');
-        node.style.transform = 'rotateX(0deg)';
-        node.style.zIndex = '999999';
+        this.getIn();
+        let nodeRed = document.querySelector('.redClose');
+
+        setTimeout(() => {
+            nodeRed.style.transform = 'rotateX(0deg)';
+            nodeRed.style.zIndex = '999999';
+        }, 2500)
+
     }
 
     out() {
@@ -573,6 +705,21 @@ class Red extends Component {
         node.style.top = '-1.9vw';
     }
 
+    getIn() {
+        let node = document.querySelector('.redUser');
+        node.style.top = '3.4vw';
+    }
+
+    nextWinner(index) {
+        this.getIn();
+        this.has = index;
+        setTimeout(() => {
+            this.setState({
+                showUser: this.uuu[index]
+            })
+            this.out();
+        }, 3000)
+    }
     render() {
         return (
             <div className="redWrapper">
@@ -580,7 +727,7 @@ class Red extends Component {
 
                 <div className="redUser">
                     <p>幸运用户</p>
-                    <p>{this.props.redUser}</p>
+                    <p>{this.state.showUser}</p>
                 </div>
 
                 <div className="redCoverWrapper">

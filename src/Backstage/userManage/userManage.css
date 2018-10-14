@@ -7,7 +7,7 @@
 	min-width: 100px;
 }
 
-.userList {
+.userListManage {
 	margin-bottom: 50px;
 }
 
@@ -73,7 +73,7 @@
 	margin: 10px;
 }
 
-.userList span{
+.userListManage span{
 	display: inline-block;
 	min-width: 180px;
 	font-size: 13px;

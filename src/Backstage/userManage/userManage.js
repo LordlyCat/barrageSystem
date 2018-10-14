@@ -13,7 +13,7 @@ class UserManage extends Component {
         return (
             <div className="userManageWrapper">
                 <p className="title">用户管理</p>
-                <div className="userList">
+                <div className="userListManage">
                     <p className="smallTitle">用户列表</p>
                     <div className="search">
                         <input type="text" placeholder="昵称或微信号" />
@@ -59,7 +59,7 @@ class UserManage extends Component {
                     <span>弹幕数量：295</span>
                 </div>
 
-                <div className="userList">
+                <div className="userListManage">
                     <p className="smallTitle">黑名单</p>
                     <div className="search">
                         <input type="text" placeholder="昵称或微信号" />
@@ -103,7 +103,7 @@ class UserManage extends Component {
                     </div>
                 </div>
 
-                <div className="userList">
+                <div className="userListManage">
                     <p className="smallTitle">中奖名单</p>
                     <div className="search">
                         <input type="text" placeholder="昵称或微信号" />

@@ -15,6 +15,7 @@ class RedEnvelope extends Component {
         this.setDuration = this.setDuration.bind(this);
         this.sendRed = this.sendRed.bind(this);
         this.overOut = this.overOut.bind(this);
+        this.next = this.next.bind(this);
 
         this.state = {
             peopleNum: 3,
@@ -74,6 +75,23 @@ class RedEnvelope extends Component {
             }
         })
     }
+    next() {
+        ajax({
+            url: 'https://wx.idsbllp.cn/bigscreen/admin/commond',
+            method: 'POST',
+            data: {
+                key: 'nextRed',
+                value: 'nextRed'
+            },
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'jwt': localStorage.getItem('jwt')
+            },
+            success: (data) => {
+                console.log('nextRed', data.response);
+            }
+        })
+    }
     render() {
         return (
             <div id="redWrapper">
@@ -119,6 +137,8 @@ class RedEnvelope extends Component {
 
                 <div className="stop" onClick={this.overOut} >停止</div>
                 <div className="start" onClick={this.sendRed} >开始</div>
+
+                <div className="start" onClick={this.next} >NEXT</div>
             </div>
         )
     }
