@@ -15,7 +15,7 @@ class BigScreen extends Component {
         this.myRef = React.createRef();
         this.width = window.screen.availWidth;
         this.height = window.innerHeight;
-        this.defaultAttributes = new DefaultAttributes(31, 'serif', 5, 1);
+        this.defaultAttributes = new DefaultAttributes(35, 'serif', 5, 1);
         this.lane = new Lane(Math.floor(this.height / this.defaultAttributes.getFontSize()));
         this.pushBarrageList = this.pushBarrageList.bind(this);
         this.reconnect = this.reconnect.bind(this);
@@ -46,6 +46,7 @@ class BigScreen extends Component {
         let list = [];
 
         websocket = new WebSocket('wss://wx.yyeke.com/bigscreennetty/screen');
+
         websocket.addEventListener('open', (event) => {
             console.log('wss', event);
 
@@ -67,6 +68,7 @@ class BigScreen extends Component {
 
         websocket.addEventListener('message', (message) => {
             let data = JSON.parse(message.data);
+            console.log(data)
 
             switch (data.type) {
                 case 'text':
@@ -166,15 +168,14 @@ class BigScreen extends Component {
 
         // let n = 0;
         // setInterval(() => {
-        //     list.push(new Barrage('哈哈hahahahahahhah' + n, 'white',
+        //     list.push(new Barrage('红岩网校工作站年会', lg,
         //         this.defaultAttributes.getFontSize(), this.defaultAttributes.getFontFamily(),
         //         this.defaultAttributes.getSpeed(), this.defaultAttributes.getOpacity(),
         //         '',
         //         this.lane.useLane() * this.defaultAttributes.getFontSize()
         //     ));
-        //     n++;
-        // }, 10);
-
+        //     //n++;
+        // }, 0);
 
         let go = () => {
             ctx.clearRect(0, 0, this.width, this.height);
@@ -249,7 +250,7 @@ class BigScreen extends Component {
         if (data.text === '红岩网校工作站') {
             data.color = lg;
         }
-        //console.log(list.length)
+        console.log(list.length)
         list.push(new Barrage(data.text, data.color,
             that.defaultAttributes.getFontSize(), that.defaultAttributes.getFontFamily(),
             that.defaultAttributes.getSpeed(), that.defaultAttributes.getOpacity(), '',
@@ -258,7 +259,6 @@ class BigScreen extends Component {
     render() {
         let slot = null;
         let red = null;
-        //console.log()
         if (this.state.ifSlot) {
             slot = <SlotMachine status={this.state.slotStart} />
         }
@@ -466,10 +466,10 @@ class SlotMachine extends Component {
     getUserList() {
         let that = this;
         ajax({
-            url: 'https://wx.idsbllp.cn/bigscreen/admin/getUserList',
+            url: 'https://wx.yyeke.com/bigscreen/admin/getUserList',
             method: 'GET',
             data: {
-                num: 5
+                num: 0
             },
             headers: {},
             success: (data) => {
@@ -567,7 +567,7 @@ class SlotMachine extends Component {
     end() {
         console.log('end');
         clearInterval(this.beginTimer);
-        let stopT = Math.round(Math.random() * 5000) + 3000;
+        let stopT = 3000 //Math.round(Math.random() * 5000) + 3000;
         let l = this.moveList.length;
 
         this.beginTimer = setInterval(() => {

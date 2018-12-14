@@ -32,14 +32,15 @@ class Random extends Component {
             })
         }
         ajax({
-            url: 'https://wx.idsbllp.cn/bigscreen/admin/commond',
+            url: 'https://wx.yyeke.com/bigscreen/admin/commond',
             method: 'POST',
-            data: {
-                key: 'showSlot',
-                value: flag
-            },
+            data: `{
+                "type": "server",
+                "key": "showSlot",
+                "value": "${flag}"
+            }`,
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'raw',
                 'jwt': localStorage.getItem('jwt')
             },
             success: (data) => {
@@ -49,14 +50,15 @@ class Random extends Component {
     }
     lottery() {
         ajax({
-            url: 'https://wx.idsbllp.cn/bigscreen/admin/commond',
+            url: 'https://wx.yyeke.com/bigscreen/admin/commond',
             method: 'POST',
-            data: {
-                key: 'lottery',
-                value: 'lottery'
-            },
+            data: `{
+                "type": "server",
+                "key": "lottery",
+                "value": "lottery"
+            }`,
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'raw',
                 'jwt': localStorage.getItem('jwt')
             },
             success: (data) => {

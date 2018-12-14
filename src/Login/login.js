@@ -30,7 +30,7 @@ class Login extends Component {
 	login() {
 		let data = this.state;
 		ajax({
-			url: 'https://wx.idsbllp.cn/bigscreen/admin/login',
+			url: 'https://wx.yyeke.com/bigscreen/admin/login',
 			method: 'POST',
 			data: data,
 			headers: {
@@ -39,7 +39,7 @@ class Login extends Component {
 			success: (data) => {
 				console.log('data', JSON.parse(data.response));
 				let resData = JSON.parse(data.response);
-				if (resData.status === 200) {
+				if (resData.status === 10000) {
 					localStorage.setItem('jwt', resData.data.jwt);
 					alert('登录成功');
 					window.location = './#/backStage';

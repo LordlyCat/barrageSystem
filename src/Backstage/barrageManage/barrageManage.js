@@ -19,14 +19,15 @@ class BarrageManage extends Component {
     }
     openColors() {
         ajax({
-            url: 'https://wx.idsbllp.cn/bigscreen/admin/commond',
+            url: 'https://wx.yyeke.com/bigscreen/admin/commond',
             method: 'POST',
-            data: {
-                key: 'colors',
-                value: 'colors'
-            },
+            data: `{
+                "type": "server",
+                "key": "colors",
+                "value": "colors"
+            }`,
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'raw',
                 'jwt': localStorage.getItem('jwt')
             },
             success: (data) => {

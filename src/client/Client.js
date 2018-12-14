@@ -41,7 +41,7 @@ class Client extends Component {
     }
     componentWillMount() {
         if (window.location.hash.split('?')[1] == undefined) {
-            window.location = 'https://wx.idsbllp.cn/bigscreen/barrageIndex';
+            window.location = 'https://wx.yyeke.com/bigscreen/enter';
             return false;
         }
         console.log(window.location.hash.split('?')[1].slice(2));
@@ -51,7 +51,7 @@ class Client extends Component {
         }, 'client', '/#/client');
     }
     componentDidMount() {
-
+        //
     }
     getInput(e) {
         let barrage = this.state.barrage;
@@ -95,7 +95,7 @@ class Client extends Component {
             ajax({
                 async: true,
                 method: 'POST',
-                url: 'https://wx.idsbllp.cn/bigscreen/send',
+                url: 'https://wx.yyeke.com/bigscreen/send',
                 data: {
                     ...that.state.barrage
                     // openid: 'testOpenid'
@@ -107,17 +107,17 @@ class Client extends Component {
                 success: (data) => {
                     console.log('data', data.response);
                     let resData = JSON.parse(data.response)
-                    //console.log(JSON.parse(data.response).status);
-                    if (resData.status === 403) {
+                    console.log(JSON.parse(data.response).status);
+                    if (resData.status === 10005) {
                         alert("请使用微信打开");
-                    } else if (resData.status == 401) {
+                    } else if (resData.status === 10004) {
                         //alert('每隔3s才可以发送下一条弹幕哦');
                         that.setState({
                             cover: 'coverOn',
                             tipsClass: 'tips',
                             tips: '每隔5s才可以发送下一条弹幕哦'
                         })
-                    } else if (resData.status === 402) {
+                    } else if (resData.status === 10003 || resData.status === 10002) {
                         alert("登录过期，点击‘确认’重新登录");
                         window.location = 'https://wx.idsbllp.cn/bigscreen/barrageIndex';
                     }

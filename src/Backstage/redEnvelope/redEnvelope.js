@@ -46,7 +46,7 @@ class RedEnvelope extends Component {
         }
         let that = this;
         ajax({
-            url: 'https://wx.idsbllp.cn/bigscreen/admin/gift/begin',
+            url: 'https://wx.yyeke.com/bigscreen/admin/gift/begin',
             method: 'POST',
             data: that.state,
             headers: {
@@ -60,14 +60,15 @@ class RedEnvelope extends Component {
     }
     overOut() {
         ajax({
-            url: 'https://wx.idsbllp.cn/bigscreen/admin/commond',
+            url: 'https://wx.yyeke.com/bigscreen/admin/commond',
             method: 'POST',
-            data: {
-                key: 'redOver',
-                value: 'redOver'
-            },
+            data: `{
+                "type": "server",
+                "key": "redOver",
+                "value": "redOver"
+            }`,
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'raw',
                 'jwt': localStorage.getItem('jwt')
             },
             success: (data) => {
@@ -77,14 +78,15 @@ class RedEnvelope extends Component {
     }
     next() {
         ajax({
-            url: 'https://wx.idsbllp.cn/bigscreen/admin/commond',
+            url: 'https://wx.yyeke.com/bigscreen/admin/commond',
             method: 'POST',
-            data: {
-                key: 'nextRed',
-                value: 'nextRed'
-            },
+            data: `{
+                "type": "server",
+                "key": "nextRed",
+                "value": "nextRed"
+            }`,
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'raw',
                 'jwt': localStorage.getItem('jwt')
             },
             success: (data) => {
