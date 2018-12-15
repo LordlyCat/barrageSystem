@@ -557,7 +557,7 @@ class SlotMachine extends Component {
         let r = Math.round(Math.random() * (l - 1))
         this.beginTimer = setInterval(() => {
             r = Math.round(Math.random() * (l - 1));
-            console.log(r);
+            //console.log(r);
             this.setState({
                 user: this.moveList[r].nickname
             })

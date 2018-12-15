@@ -117,9 +117,13 @@ class Client extends Component {
                             tipsClass: 'tips',
                             tips: '每隔5s才可以发送下一条弹幕哦'
                         })
+
                     } else if (resData.status === 10003 || resData.status === 10002) {
                         alert("登录过期，点击‘确认’重新登录");
-                        window.location = 'https://wx.idsbllp.cn/bigscreen/barrageIndex';
+                        window.location = 'https://wx.yyeke.com/bigscreen/enter';
+                    } else {
+                        alert("网络出错");
+                        window.location = 'https://wx.yyeke.com/bigscreen/enter';
                     }
 
                 }

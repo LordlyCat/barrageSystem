@@ -14,8 +14,12 @@ import ajax from '../../ajax.js';
 class BarrageManage extends Component {
     constructor() {
         super();
-
+        this.state = {
+            shieldWord: ''
+        }
         this.openColors = this.openColors.bind(this);
+        this.setShieldWord = this.setShieldWord.bind(this);
+        this.getInput = this.getInput.bind(this);
     }
     openColors() {
         ajax({
@@ -35,14 +39,42 @@ class BarrageManage extends Component {
             }
         })
     }
+    getInput(e) {
+        console.log(e.target.value);
+        this.setState({
+            shieldWord: e.target.value
+        })
+    }
+    setShieldWord() {
+        ajax({
+            async: true,
+            method: 'POST',
+            url: 'https://wx.yyeke.com/bigscreen/admin/sensitive/add',
+            data: {
+                word: this.state.shieldWord
+            },
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'jwt': localStorage.getItem('jwt')
+            },
+            success: (data) => {
+                console.log('data', data.response);
+            },
+            error: (err) => {
+                console.log('err:', err)
+            }
+        })
+    }
     render() {
         return (
             <div className="barrageManage">
                 <p className="title">弹幕管理</p>
                 <div className="shield">
                     <p className="smallTitle">弹幕屏蔽</p>
-                    <input type="text" placeholder="输入需要屏蔽的关键词"/>
-                    <div className="add">确认添加</div>
+                    <input type="text" placeholder="输入需要屏蔽的关键词" 
+                    value={this.state.shieldWord}
+                    onChange={this.getInput} />
+                    <div className="add" onClick={this.setShieldWord}>确认添加</div>
                     <div className="keyword">
                         <p>屏蔽关键词：</p>
                         <span className="word">123 <img src={iconDelete} alt=""/></span>
