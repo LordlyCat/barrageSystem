@@ -121,6 +121,8 @@ class Client extends Component {
                     } else if (resData.status === 10003 || resData.status === 10002) {
                         alert("登录过期，点击‘确认’重新登录");
                         window.location = 'https://wx.yyeke.com/bigscreen/enter';
+                    } else if (resData.status === 10000) {
+                        console.log('success');
                     } else {
                         alert("网络出错");
                         window.location = 'https://wx.yyeke.com/bigscreen/enter';
