@@ -68,7 +68,7 @@ class BigScreen extends Component {
 
         websocket.addEventListener('message', (message) => {
             let data = JSON.parse(message.data);
-            console.log(data)
+            //console.log(data)
 
             switch (data.type) {
                 case 'text':
