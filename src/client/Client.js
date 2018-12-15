@@ -111,7 +111,6 @@ class Client extends Component {
                     if (resData.status === 10005) {
                         alert("请使用微信打开");
                     } else if (resData.status === 10004) {
-                        //alert('每隔3s才可以发送下一条弹幕哦');
                         that.setState({
                             cover: 'coverOn',
                             tipsClass: 'tips',
